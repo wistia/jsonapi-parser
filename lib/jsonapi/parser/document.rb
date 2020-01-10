@@ -129,14 +129,12 @@ module JSONAPI
 
       # @api private
       def self.parse_link!(link)
-        if link.is_a?(String)
+        case link
+        when String, Hash, NilClass
           # Do nothing
-        elsif link.is_a?(Hash)
-          # TODO(beauby): Pending clarification request
-          #   https://github.com/json-api/json-api/issues/1103
         else
           ensure!(false,
-                  'The value of a link must be either a string or an object.')
+                  'The value of a link must be a string, object, or null.')
         end
       end
 
